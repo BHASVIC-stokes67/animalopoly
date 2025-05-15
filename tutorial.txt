@@ -1,0 +1,18 @@
+HOW TO PLAY THE GAME:
+You are one of up to 4 players
+You begin with no animals and £3750 on the start square
+You may choose a symbol to represent your position on the board
+At the beginning of your turn, you roll 2 dice and move one space across the board that many times
+If you rolled the same number on both dice, you draw 1 card from the deck and immediately use it
+The effects of the cards vary between gaining or losing money, or winning the lottery
+When you land on an animal not owned by anyone, you may buy the animal for its cost
+When you land on an animal owned by another player, you must pay the rent cost on the animal to that player
+When another player lands on one of your animals, they must pay the rent cost to you
+Once you own the animal, you may pay additional costs in order to make the rent on that animal more expensive
+The board holds 24 animals on different spaces, a start square, and a miss a go square
+When you land on the miss a go square, you miss the rest of your turn and your next turn
+When you pass the start square, you gain £500. If you landed on that square, instead you get £1000
+If you run out of money, you die
+If you are the last person alive, you win the game
+
+Have fun!
