@@ -2,12 +2,19 @@ public class Board {
     String board[] = new String[26];
     int val = 0;
     String player1;
+    int player1Pos = 1;
     String player2;
+    int player2Pos = 1;
     String player3;
+    int player3Pos = 1;
     String player4;
-    int move = 0;
+    int player4Pos = 1;
     int isCard = 0;
+    int playerCount = 0;
     Dice dice = new Dice();
+    Animal animal = new Animal();
+    Cards card = new Cards();
+
     public void Main() {
         Setup();
         while(val == 0) {
@@ -19,7 +26,7 @@ public class Board {
     public void Setup() {
         System.out.println("Welcome to Animalopoly");
         System.out.println("How many players will be playing? Max 4");
-        int playerCount = Integer.parseInt(Console.readLine());
+        playerCount = Integer.parseInt(Console.readLine());
         while (playerCount > 4 || playerCount < 2) {
             System.out.println("Input not accepted: try again");
             playerCount = Integer.parseInt(Console.readLine());
@@ -33,15 +40,15 @@ public class Board {
             }
             else if(i == 2) {
                 player2 = Console.readLine();
-                System.out.println("Player 1: " + player2);
+                System.out.println("Player 2: " + player2);
             }
             else if(i == 3) {
                 player3 = Console.readLine();
-                System.out.println("Player 1: " + player3);
+                System.out.println("Player 3: " + player3);
             }
             else {
                 player4 = Console.readLine();
-                System.out.println("Player 1: " + player4);
+                System.out.println("Player 4: " + player4);
             }
         }
     }
@@ -51,46 +58,99 @@ public class Board {
         while(playerWin == 0) {
             if(turn == 1) {
                 System.out.println(player1 + "'s turn");
-                move = dice.Dice1();
+                player1Pos += dice.Dice1();
+                if(player1Pos > 26) {
+                    player1Pos -= 26;
+                }
+                System.out.println("You landed on the " + animal.ReturnAnimal(player1Pos));
                 isCard = dice.Dice2();
                 if(isCard == 1) {
-                    // Something to do with cards - will figure it out
+                    card.main();
                 }
+                if(animal.ReturnAnimal(player1Pos) == "Skip a go") {
+                    turn += 1;
+                }
+                else {
 
-                turn += 1;
+                    turn += 1;
+                }
             }
             if(turn == 2) {
                 System.out.println(player2 + "'s turn");
-                move = dice.Dice1();
+                player2Pos += dice.Dice1();
+                if(player2Pos > 26) {
+                    player2Pos -= 26;
+                }
+                System.out.println("You landed on an " + animal.ReturnAnimal(player2Pos));
                 isCard = dice.Dice2();
                 if(isCard == 1) {
-                    // Something to do with cards - will figure it out
+                    card.main();
                 }
+                if(animal.ReturnAnimal(player2Pos) == "Skip a go") {
+                    if(playerCount > 2) {
+                        turn += 1;
+                    }
+                    else {
+                        turn = 1;
+                    }
+                }
+                else{
 
-
-                turn += 2;
+                    if(playerCount > 2) {
+                        turn += 1;
+                    }
+                    else {
+                        turn = 1;
+                    }
+                }
             }
             if(turn == 3) {
                 System.out.println(player3 + "'s turn");
-                move = dice.Dice1();
+                player3Pos += dice.Dice1();
+                if(player3Pos > 26) {
+                    player3Pos -= 26;
+                }
+                System.out.println("You landed on the " + animal.ReturnAnimal(player3Pos));
                 isCard = dice.Dice2();
                 if(isCard == 1) {
-                    // Something to do with cards - will figure it out
+                    card.main();
                 }
+                if(animal.ReturnAnimal(player3Pos) == "Skip a go") {
+                    if(playerCount > 3) {
+                        turn += 1;
+                    }
+                    else {
+                        turn = 1;
+                    }
+                }
+                else{
 
-
-                turn += 3;
+                    if(playerCount > 3) {
+                        turn += 1;
+                    }
+                    else {
+                        turn = 1;
+                    }
+                }
             }
             if(turn == 4) {
                 System.out.println(player4 + "'s turn");
-                move = dice.Dice1();
+                player4Pos += dice.Dice1();
+                if(player4Pos > 26) {
+                    player4Pos -= 26;
+                }
+                System.out.println("You landed on an " + Animal.ReturnAnimal(player4Pos));
                 isCard = dice.Dice2();
                 if(isCard == 1) {
-                    // Something to do with cards - will figure it out
+                    card.main();
                 }
+                if(animal.ReturnAnimal(player2Pos) == "Skip a go") {
+                    turn = 1;
+                }
+                else{
 
-
-                turn = 1;
+                    turn = 1;
+                }
             }
         }
         return playerWin;
