@@ -1,5 +1,4 @@
 public class Board {
-    String board[] = new String[26];
     int val = 0;
     String player1;
     int player1Pos = 1;
@@ -9,48 +8,25 @@ public class Board {
     int player3Pos = 1;
     String player4;
     int player4Pos = 1;
+
     int isCard = 0;
     int playerCount = 0;
+    String board[] = new String[26];
+    String check;
+
     Dice dice = new Dice();
     Animal animal = new Animal();
     Cards card = new Cards();
+    Player1 Player1 = new Player1();
+    Player2 Player2 = new Player2();
+    Player3 Player3 = new Player3();
+    Player4 Player4 = new Player4();
 
     public void Main() {
-        Setup();
         while(val == 0) {
             val = Game();
         }
         Finish();
-    }
-
-    public void Setup() {
-        System.out.println("Welcome to Animalopoly");
-        System.out.println("How many players will be playing? Max 4");
-        playerCount = Integer.parseInt(Console.readLine());
-        while (playerCount > 4 || playerCount < 2) {
-            System.out.println("Input not accepted: try again");
-            playerCount = Integer.parseInt(Console.readLine());
-        }
-        System.out.println("Playing with " + playerCount + " players\n");
-        for(int i = 0; i < playerCount; i++) {
-            System.out.println("Player " + i + 1 + " will be called: ");
-            if(i == 1) {
-                player1 = Console.readLine();
-                System.out.println("Player 1: " + player1);
-            }
-            else if(i == 2) {
-                player2 = Console.readLine();
-                System.out.println("Player 2: " + player2);
-            }
-            else if(i == 3) {
-                player3 = Console.readLine();
-                System.out.println("Player 3: " + player3);
-            }
-            else {
-                player4 = Console.readLine();
-                System.out.println("Player 4: " + player4);
-            }
-        }
     }
 
     public int Game() {
@@ -61,17 +37,38 @@ public class Board {
                 player1Pos += dice.Dice1();
                 if(player1Pos > 26) {
                     player1Pos -= 26;
+                    if(player1Pos == 1) {
+                        Player1.setMoney(1000);
+                    }
+                    else {
+                        Player1.setMoney(500);
+                    }
                 }
                 System.out.println("You landed on the " + animal.ReturnAnimal(player1Pos));
                 isCard = dice.Dice2();
                 if(isCard == 1) {
                     card.main();
                 }
-                if(animal.ReturnAnimal(player1Pos) == "Skip a go") {
+                if(animal.ReturnAnimal(player1Pos) == "Skip a go" || Player1.getMoney() < 0) {
                     turn += 1;
                 }
                 else {
-
+                    System.out.println("Would you like to buy the " + animal.ReturnAnimal(player1Pos) + "?\n 1 = Yes // 2 = No");
+                    while(check != "1") {
+                        if(check == "2") {
+                            break;
+                        }
+                        else{
+                            System.out.println("wrong input");
+                            check = Console.readLine();
+                        }
+                    }
+                    if(check == "1") {
+                        Animal.buy(player1Pos, 1);
+                    }
+                    if(Player1.getMoney() < 0) {
+                        System.out.println(player1 + " has lost all money, " + player1 + " has lost!");
+                    }
                     turn += 1;
                 }
             }

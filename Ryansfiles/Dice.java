@@ -1,8 +1,6 @@
 import java.util.Random;
 public class Dice {
-    static int Dice1 = 0;
-    static int Dice2 = 0;
-    static int[] Diceresults = {0, 0};
+    static int Dice1 = 0; static int Dice2 = 0; static int[] Diceresults = {0, 0};
     public static void Main() {
         Random rand = new Random();
         Dice1 = rand.nextInt(6) + 1;
@@ -25,5 +23,4 @@ public class Dice {
     public int Dice2() {
         return Diceresults[1];
     }
-
 }
