@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Cards {
-    public static void main(String[] args) {
+    public static void main() {
         String[][] cards = new String[20][2];
 
         //declares each value with a card

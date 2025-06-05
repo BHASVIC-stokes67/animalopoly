@@ -42,19 +42,18 @@ public class Player {
         return isInGame && playersLeft == 1;
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void main() {
 
         Player[] players = new Player[4];
         for (int i = 0; i < 4; i++) {
             System.out.println("Enter Player " + (i + 1) + " name:");
-            String name = scanner.nextLine();
+            String name = Console.readLine();
 
             System.out.println("Choose a piece (*, |, ?, #, etc.):");
-            String piece = scanner.nextLine();
+            String piece = Console.readLine();
 
-            players[i] = new Player(name, piece, 1500);
-            //starting money is not $1500, its a placeholder
+            players[i] = new Player(name, piece, 3750);
+
         }
 
         //the code below is simply a simulated version, with pre determined moves to est wether or not my code can actually work
@@ -82,9 +81,6 @@ public class Player {
                 System.out.println(player.name + " has won the game!");
             }
         }
-
-
-        scanner.close();
     }
 }
 
