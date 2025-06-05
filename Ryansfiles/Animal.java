@@ -8,10 +8,10 @@ public class Animal {
     static String[] player3 = new String[26];
     static String[] player4 = new String[26];
 
-    static Player1 Player1 = new Player1();
-    static Player2 Player2 = new Player2();
-    static Player3 Player3 = new Player3();
-    static Player4 Player4 = new Player4();
+    static Player Player1 = new Player();
+    static Player Player2 = new Player();
+    static Player Player3 = new Player();
+    static Player Player4 = new Player();
 
     public static void Main() {
         board[0] = "Start"; board[1] = "Penguin"; board[2] = "Rabbit";
@@ -44,15 +44,63 @@ public class Animal {
     public static String buy(int pos, int player) {
         for(int i = 0; i < board.length; i++) {
             if(board[i].equals(player1[i])) {
+                if(player == 2) {
+                    Player2.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                    Player1.addMoney(cost[pos - 1]);
+                }
+                if(player == 3) {
+                    Player3.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                    Player1.addMoney(cost[pos - 1]);
+                }
+                if(player == 4) {
+                    Player4.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                    Player1.addMoney(cost[pos - 1]);
+                }
                 return "Cannot buy animal, player 1 owns it";
             }
             if(board[i].equals(player2[i])) {
+                if(player == 1) {
+                    Player1.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                    Player2.addMoney(cost[pos - 1]);
+                }
+                if(player == 3) {
+                    Player3.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                    Player2.addMoney(cost[pos - 1]);
+                }
+                if(player == 4) {
+                    Player4.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                    Player2.addMoney(cost[pos - 1]);
+                }
                 return "Cannot buy animal, player 2 owns it";
             }
             if(board[i].equals(player3[i])) {
+                if(player == 1) {
+                    Player1.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                    Player3.addMoney(cost[pos - 1]);
+                }
+                if(player == 2) {
+                    Player2.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                    Player3.addMoney(cost[pos - 1]);
+                }
+                if(player == 4) {
+                    Player4.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                    Player1.addMoney(cost[pos - 1]);
+                }
                 return "Cannot buy animal, player 3 owns it";
             }
             if(board[i].equals(player4[i])) {
+                if(player == 1) {
+                    Player1.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                    Player4.addMoney(cost[pos - 1]);
+                }
+                if(player == 2) {
+                    Player2.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                    Player4.addMoney(cost[pos - 1]);
+                }
+                if(player == 3) {
+                    Player3.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                    Player4.addMoney(cost[pos - 1]);
+                }
                 return "Cannot buy animal, player 4 owns it.";
             }
         }
@@ -61,8 +109,9 @@ public class Animal {
                 return "Cannot buy animal";
             }
             else {
-                Player1.setMoney(cost[pos - 1] - (cost[pos - 1] * 2));
-
+                Player1.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                player1[pos - 1] = board[pos - 1];
+                return "Player 1 has bought this animal";
             }
         }
         else if(player == 2) {
@@ -70,7 +119,9 @@ public class Animal {
                 return "Cannot buy animal";
             }
             else {
-                Player2.setMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                Player2.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                player2[pos - 1] = board[pos - 1];
+                return "Player 2 has bought this animal";
             }
         }
         else if(player == 3) {
@@ -78,7 +129,9 @@ public class Animal {
                 return "Cannot buy animal";
             }
             else {
-                Player3.setMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                Player3.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                player3[pos - 1] = board[pos - 1];
+                return "Player 3 has bought this animal";
             }
         }
         else {
@@ -86,9 +139,10 @@ public class Animal {
                 return "Cannot buy animal";
             }
             else {
-                Player4.setMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                Player4.subtractMoney(cost[pos - 1] - (cost[pos - 1] * 2));
+                player4[pos - 1] = board[pos - 1];
+                return "Player 4 has bought this animal";
             }
         }
-        return null;
     }
 }
